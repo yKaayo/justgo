@@ -3,6 +3,7 @@ import { useLocalSearchParams } from "expo-router";
 
 const Place = () => {
   const { id } = useLocalSearchParams();
+
   return (
     <View>
       <Text>Place {id}</Text>

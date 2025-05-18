@@ -4,7 +4,7 @@ import { Link } from "expo-router";
 export default function Index() {
   return (
     <View>
-      <Text className="text-red-600 font-semibold">Olá</Text>
+      <Text className="font-semibold text-red-600">Olá</Text>
       <Link href="/register">Criar uma conta</Link>
       <Link href="/favorite">Criar uma conta</Link>
       <Link href="/trail">Criar uma conta</Link>

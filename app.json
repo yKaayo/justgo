@@ -28,13 +28,23 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "image": "./assets/icons/just-go.svg",
+          "resizeMode": "cover",
+          "backgroundColor": "#ffffff",
+          "enableFullScreenImage": true
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Raleway-Regular.ttf",
+            "./assets/fonts/Lexend-SemiBold.ttf"
+          ]
         }
       ]
     ],
+
     "experiments": {
       "typedRoutes": true
     }
