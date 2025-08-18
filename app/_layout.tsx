@@ -1,19 +1,24 @@
-import { SplashScreen, Stack } from "expo-router";
-import "./global.css";
 import { useFonts } from "expo-font";
-import { useEffect } from "react";
+import { Stack } from "expo-router";
+import "react-native-reanimated";
+import "../styles/global.css";
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({
-    Lexend: require("../assets/fonts/Lexend-SemiBold.ttf"),
+  const [loaded] = useFonts({
+    Antonio: require("../assets/fonts/Antonio-Regular.ttf"),
     Raleway: require("../assets/fonts/Raleway-Regular.ttf"),
   });
 
-  useEffect(() => {
-    fontsLoaded && SplashScreen.hideAsync();
-  }, [fontsLoaded]);
+  if (!loaded) {
+    return null;
+  }
 
-  if (!fontsLoaded) return null;
-
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)"/>
+        <Stack.Screen name="+not-found" />
+      </Stack>
+    </>
+  );
 }
