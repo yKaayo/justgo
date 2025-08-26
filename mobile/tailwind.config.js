@@ -4,6 +4,8 @@ module.exports = {
   content: [
     "./app/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
+    "./layout/**/*.{js,jsx,ts,tsx}",
+    "./screens/**/*.{js,jsx,ts,tsx}",
   ],
   presets: [require("nativewind/preset")],
   theme: {
@@ -11,6 +13,9 @@ module.exports = {
       fontFamily: {
         sans: ["Raleway", "System"],
         mono: ["Antonio", "System"],
+      },
+      colors: {
+        brown: "#E17A65",
       },
     },
   },

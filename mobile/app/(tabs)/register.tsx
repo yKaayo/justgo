@@ -12,8 +12,12 @@ import LogoIcon from "@/assets/icons/Logo";
 const Register = () => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView className="flex-1 bg-white">
-        <ScrollView contentContainerClassName="flex-1 p-5 flex gap-5">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerClassName="bg-white"
+        contentContainerStyle={{ paddingBottom: 80, flexGrow: 1 }}
+      >
+        <SafeAreaView className="flex-1 bg-white px-5 gap-5">
           <View className="flex-1 flex-row justify-between gap-3">
             <View className="flex-1 gap-3 opacity-60">
               <Image
@@ -100,8 +104,8 @@ const Register = () => {
               </Text>
             </TouchableOpacity>
           </View>
-        </ScrollView>
-      </SafeAreaView>
+        </SafeAreaView>
+      </ScrollView>
     </SafeAreaProvider>
   );
 };

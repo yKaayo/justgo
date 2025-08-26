@@ -3,6 +3,9 @@ import { Stack } from "expo-router";
 import "react-native-reanimated";
 import "../styles/global.css";
 
+// Components
+import Navbar from "@/components/Navbar";
+
 export default function RootLayout() {
   const [loaded] = useFonts({
     Antonio: require("../assets/fonts/Antonio-Regular.ttf"),
@@ -15,10 +18,16 @@ export default function RootLayout() {
 
   return (
     <>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)"/>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="(tabs)" />
         <Stack.Screen name="+not-found" />
       </Stack>
+
+      <Navbar />
     </>
   );
 }

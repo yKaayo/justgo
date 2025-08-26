@@ -3,7 +3,6 @@ import {
   CameraType,
   FlashMode,
   useCameraPermissions,
-  CameraPictureOptions,
 } from "expo-camera";
 import { useRef, useState } from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";

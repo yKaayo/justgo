@@ -11,8 +11,11 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    ".expo/types/**/*.ts",
+    "mobile/.expo/types/**/*.ts",
     "expo-env.d.ts",
-    "nativewind-env.d.ts"
-, "app/(tabs)/index.tsx", "assets/icons/LoopIcon.js"  ]
+    "nativewind-env.d.ts",
+    "app/(tabs)/index.tsx",
+    "assets/icons/LoopIcon.js",
+    ".expo/types/**/*.ts"
+  ]
 }
