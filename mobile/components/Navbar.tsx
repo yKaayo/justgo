@@ -10,24 +10,25 @@ const Navbar = () => {
   const pathname = usePathname(); // para saber a rota atual
 
   return (
-    <SafeAreaView
-      edges={["bottom"]}
-      className="absolute bottom-0 left-0 right-0 bg-brown rounded-t-3xl w-full"
-    >
-      <View className="flex-row justify-around items-center h-14">
-        <Link href="/" asChild>
-          <Pressable>
-            <HomeIcon color={pathname === "/" ? "#fff" : "#aaa"} />
-          </Pressable>
-        </Link>
+    <View className="absolute bottom-0 left-0 right-0">
+      <SafeAreaView>
+        <View className="flex-row justify-around items-center h-14 bg-brown w-[90%] mx-auto rounded-3xl mb-3 shadow-lg">
+          <Link href="/" asChild>
+            <Pressable>
+              <HomeIcon color={pathname === "/" ? "#fff" : "#aaa"} />
+            </Pressable>
+          </Link>
 
-        <Link href="/register" asChild>
-          <Pressable>
-            <FavoriteIcon color={pathname === "/register" ? "#fff" : "#aaa"} />
-          </Pressable>
-        </Link>
-      </View>
-    </SafeAreaView>
+          <Link href="/register" asChild>
+            <Pressable>
+              <FavoriteIcon
+                color={pathname === "/register" ? "#fff" : "#aaa"}
+              />
+            </Pressable>
+          </Link>
+        </View>
+      </SafeAreaView>
+    </View>
   );
 };
 
