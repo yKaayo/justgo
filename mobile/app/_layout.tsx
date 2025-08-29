@@ -1,5 +1,5 @@
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, usePathname } from "expo-router";
 import "react-native-reanimated";
 import "../styles/global.css";
 
@@ -11,6 +11,9 @@ export default function RootLayout() {
     Antonio: require("../assets/fonts/Antonio-Regular.ttf"),
     Raleway: require("../assets/fonts/Raleway-Regular.ttf"),
   });
+
+  const pathname = usePathname();
+  const hideNavbar = pathname === "/camera";
 
   if (!loaded) {
     return null;
@@ -25,9 +28,10 @@ export default function RootLayout() {
       >
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="+not-found" />
+        <Stack.Screen name="camera" />
       </Stack>
 
-      <Navbar />
+      {!hideNavbar && <Navbar />}
     </>
   );
 }
