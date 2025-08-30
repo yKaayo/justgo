@@ -11,7 +11,10 @@ import { useEffect } from "react";
 // Icon
 import LogoIcon from "@/assets/icons/Logo";
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
+// Image
+import IntroImg from "@/assets/images/intro.jpg";
+
+const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
 interface IntroProps {
   onAnimationComplete: () => void;
@@ -44,6 +47,10 @@ const Intro = ({ onAnimationComplete }: IntroProps) => {
     };
   });
 
+  // Cálculo para manter proporção da logo
+  const logoWidth = SCREEN_WIDTH - 40; // Menos 20px de cada lado (m-5)
+  const logoHeight = (logoWidth * 15) / 42; // Proporção original: 42x15
+
   return (
     <Animated.View
       style={[
@@ -59,14 +66,14 @@ const Intro = ({ onAnimationComplete }: IntroProps) => {
       ]}
     >
       <Image
-        source={require("@/assets/images/homeBg.png")}
+        source={IntroImg}
         resizeMode="cover"
         style={{ width: "100%", height: SCREEN_HEIGHT }}
       />
 
       <SafeAreaView className="absolute inset-0">
-        <View className="m-5">
-          <LogoIcon />
+        <View className="mx-5 flex-1 justify-center">
+          <LogoIcon width={logoWidth} height={logoHeight} color="#fff" />
         </View>
       </SafeAreaView>
     </Animated.View>

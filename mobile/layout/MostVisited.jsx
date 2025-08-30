@@ -23,7 +23,14 @@ const MostVisited = () => {
     <View className="mr-3" style={{ width: CARD_WIDTH }}>
       <Card
         item={item}
-        onPress={() => console.log(`Card ${index + 2}`)}
+        onPress={() =>
+          router.push({
+            pathname: "/card-info",
+            params: {
+              item: JSON.stringify(item),
+            },
+          })
+        }
         width={CARD_WIDTH}
       />
     </View>
@@ -48,6 +55,7 @@ const MostVisited = () => {
         </View>
 
         <View className="gap-3">
+          {/* Main Card */}
           <View className="h-[175px]">
             <Card
               item={architectures[0]}
@@ -59,10 +67,13 @@ const MostVisited = () => {
                   },
                 })
               }
-              recommended
+              recommended={true}
+              recomendations={true}
+              closeFromYou={true}
             />
           </View>
 
+          {/* Carousel */}
           <FlatList
             ref={flatListRef}
             data={carouselData}
@@ -78,6 +89,7 @@ const MostVisited = () => {
             viewabilityConfig={viewabilityConfig}
           />
 
+          {/* Pagination */}
           <View className="flex-row justify-center mt-3 gap-2">
             {carouselData.map((_, index) => (
               <TouchableOpacity
