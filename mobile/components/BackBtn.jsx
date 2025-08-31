@@ -12,9 +12,9 @@ const BackBtn = ({ pathname = "/" }) => {
           pathname,
         })
       }
-      className="bg-gray-500 p-1 rounded-full"
+      className="bg-gray-300 p-1 rounded-full"
     >
-      <ArrowLeft size={24} />
+      <ArrowLeft size={24} color="#000" />
     </TouchableOpacity>
   );
 };
