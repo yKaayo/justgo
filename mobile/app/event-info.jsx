@@ -11,7 +11,7 @@ import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 
 // Contraints
-import architectures from "@/constants/architectures";
+import events from "@/constants/events";
 
 // Component
 import BackBtn from "../components/BackBtn";
@@ -37,10 +37,10 @@ import { sendToMaps } from "../utils/GoogleMaps";
 import { Accordion } from "tamagui";
 import AccordionItem from "../components/AccordionItem";
 import Divisor from "../components/Divisor";
-import Carousel from "../components/Carousel";
+import Carousel from "../components/EventCarousel";
 import { useState } from "react";
 
-const CardInfo = ({ free = false }) => {
+const EventCardInfo = ({ free = false }) => {
   const [recommended, setRecommended] = useState(false);
 
   const { item } = useLocalSearchParams();
@@ -52,11 +52,11 @@ const CardInfo = ({ free = false }) => {
     pet: Pet,
   };
 
-  const carouselData = architectures.slice(1, 4).map((item) => ({
+  const carouselData = events.slice(1, 4).map((item) => ({
     ...item,
     onPress: () =>
       router.push({
-        pathname: "/card-info",
+        pathname: "/event-info",
         params: { item: JSON.stringify(item) },
       }),
   }));
@@ -70,7 +70,7 @@ const CardInfo = ({ free = false }) => {
             <Image
               className="w-full h-[250px]"
               resizeMode="cover"
-              source={itemData.img}
+              source={{ uri: itemData.img }}
             />
 
             <LinearGradient
@@ -86,7 +86,7 @@ const CardInfo = ({ free = false }) => {
             />
 
             <Text className="text-white font-bold text-3xl absolute bottom-3 px-3">
-              {itemData.name}
+              {itemData.title}
             </Text>
 
             <SafeAreaView className="absolute p-5 w-full flex-row justify-between">
@@ -182,46 +182,20 @@ const CardInfo = ({ free = false }) => {
               type="multiple"
             >
               {/* Description */}
-              {itemData.description && (
+              {itemData.content && (
                 <AccordionItem
                   title="DESCRIÇÃO"
-                  content={<Text className="mb-7">{itemData.description}</Text>}
+                  content={<Text className="mb-7">{itemData.content}</Text>}
                 />
               )}
             </Accordion>
 
             <Divisor />
 
-            <CommentsCarousel comments={itemData.comments} />
-
-            {/* Information */}
-            <View className="mx-3 gap-3 mb-7 mt-7">
-              <Text className="font-bold text-lg">
-                O QUE SABER SOBRE O LUGAR
-              </Text>
-
-              <View className="gap-3">
-                <View className="flex-row items-center gap-2">
-                  <PhoneIcon size={18} color="#E17A65" />
-                  <Text>{itemData.tel}</Text>
-                </View>
-
-                <View className=" flex-row items-center gap-2">
-                  <AddressIcon size={18} color="#E17A65" />
-                  <Text className="pe-3">{itemData.address}</Text>
-                </View>
-
-                <View className="flex-row items-center gap-2">
-                  <TimeIcon size={18} color="#E17A65" />
-                  <Text className="pe-3">{itemData.work}</Text>
-                </View>
-              </View>
-            </View>
-
-            <Divisor />
+            {/* <CommentsCarousel comments={itemData.comments} /> */}
 
             {/* Comments */}
-            <Accordion
+            {/* <Accordion
               overflow="hidden"
               width="100%"
               type="multiple"
@@ -249,7 +223,7 @@ const CardInfo = ({ free = false }) => {
                   ))}
                 />
               )}
-            </Accordion>
+            </Accordion> */}
 
             <Divisor />
 
@@ -281,4 +255,4 @@ const CardInfo = ({ free = false }) => {
   );
 };
 
-export default CardInfo;
+export default EventCardInfo;

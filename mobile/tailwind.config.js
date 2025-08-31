@@ -12,11 +12,10 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Raleway", "System"],
-        mono: ["Antonio", "System"],
       },
       colors: {
         brown: "#E17A65",
-        darkGray: "#151515"
+        darkGray: "#151515",
       },
     },
   },

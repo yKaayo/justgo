@@ -13,14 +13,13 @@ import Intro from "@/components/Intro";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    Antonio: require("../assets/fonts/Antonio-Regular.ttf"),
     Raleway: require("../assets/fonts/Raleway-Regular.ttf"),
   });
 
   const [showIntro, setShowIntro] = useState(true);
 
   const pathname = usePathname();
-  const hideNavbar = pathname === "/camera";
+  const hideNavbar = pathname === "/camera" || pathname === "/";
 
   const handleIntroComplete = async () => {
     await AsyncStorage.setItem("hasSeenIntro", "true");

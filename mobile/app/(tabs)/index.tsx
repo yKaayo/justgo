@@ -1,35 +1,121 @@
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView, View } from "react-native";
+import { Image, ScrollView, Text, View, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
-// Layout
-import MostVisited from "@/layout/MostVisited";
+// Images
+import images from "@/constants/images";
 
-// Icon
+// Icons
+import GoogleIcon from "@/assets/icons/GoogleIcon";
 import LogoIcon from "@/assets/icons/Logo";
 
-const Home = () => {
+const Register = () => {
   return (
     <SafeAreaProvider>
-      <View className="flex-1">
-        <SafeAreaView className="flex-1">
-          <ScrollView
-            className="flex-1"
-            contentContainerStyle={{
-              paddingBottom: 80,
-              flexGrow: 1,
-              minHeight: "100%",
-            }}
-          >
-            <View className="absolute left-3 top-3 z-10 items-center">
-              <LogoIcon color="#000" />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerClassName="bg-white"
+        contentContainerStyle={{ paddingBottom: 20, flexGrow: 1 }}
+      >
+        <SafeAreaView className="flex-1 px-5 justify-between gap-5">
+          <View className="flex-1 flex-row justify-between gap-3">
+            <View className="flex-1 gap-3 opacity-60">
+              <Image
+                source={images.img1}
+                className="w-full flex-1"
+                resizeMode="cover"
+              />
+              <Image
+                source={images.img2}
+                className="w-full flex-grow"
+                resizeMode="cover"
+              />
+              <Image
+                source={images.img3}
+                className="w-full flex-grow"
+                resizeMode="cover"
+              />
             </View>
 
-            <MostVisited />
-          </ScrollView>
+            <View className="flex-1 gap-3 opacity-60">
+              <Image
+                source={images.img2}
+                className="w-full flex-1"
+                resizeMode="cover"
+              />
+              <Image
+                source={images.img3}
+                className="w-full flex-1"
+                resizeMode="cover"
+              />
+              <Image
+                source={images.img1}
+                className="w-full flex-1"
+                resizeMode="cover"
+              />
+            </View>
+
+            <View className="flex-1 gap-3 opacity-60">
+              <Image
+                source={images.img3}
+                className="w-full flex-grow"
+                resizeMode="cover"
+              />
+              <Image
+                source={images.img1}
+                className="w-full flex-grow"
+                resizeMode="cover"
+              />
+              <Image
+                source={images.img2}
+                className="w-full flex-1"
+                resizeMode="cover"
+              />
+            </View>
+
+            <View className="absolute -bottom-2 left-0 h-[15%] w-full">
+              <LinearGradient
+                colors={["#ffffff00", "#ffffff80", "#fff", "#fff"]}
+                style={{ height: "100%", width: "100%" }}
+              ></LinearGradient>
+            </View>
+
+            <View className="absolute h-full w-full items-center justify-center">
+              <LogoIcon width={"90%"} height={"100%"} color={"#000"} />
+            </View>
+          </View>
+
+          <View className="items-center gap-3">
+            <Text className="font-raleway text-xl text-gray">Bem Vindo!</Text>
+
+            <View>
+              <Text className="text-center font-raleway text-2xl text-gray">
+                Pronto para descobrir as obras
+              </Text>
+              <Text className="-mt-1 text-center font-raleway text-2xl font-bold text-primary">
+                mais incríveis de São Paulo?
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              onPress={() =>
+                router.push({
+                  pathname: "/home",
+                })
+              }
+              className="mt-2 w-full flex-row items-center justify-center gap-3 rounded-lg border border-zinc-100 bg-white px-5 py-2 text-black shadow shadow-zinc-400"
+            >
+              <GoogleIcon width={"26"} height={"100%"} />
+              <Text className="font-lexend text-lg text-gray">
+                Entrar com Google
+              </Text>
+            </TouchableOpacity>
+          </View>
         </SafeAreaView>
-      </View>
+      </ScrollView>
     </SafeAreaProvider>
   );
 };
 
-export default Home;
+export default Register;

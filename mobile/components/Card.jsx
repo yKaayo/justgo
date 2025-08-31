@@ -36,7 +36,9 @@ const Card = ({
             {recomendations && (
               <>
                 <HeartIcon size={12} color="#E17A65" />
-                <Text className="text-white me-2 text-sm">{item.recomendations}</Text>
+                <Text className="text-white me-2 text-sm">
+                  {item.recomendations}
+                </Text>
               </>
             )}
 
