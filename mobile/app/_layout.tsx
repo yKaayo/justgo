@@ -6,6 +6,8 @@ import "react-native-reanimated";
 import "../styles/global.css";
 import { TamaguiProvider } from "tamagui";
 import { tamaguiConfig } from "../tamagui.config";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // Components
 import Navbar from "@/components/Navbar";
@@ -13,7 +15,7 @@ import Intro from "@/components/Intro";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    Raleway: require("../assets/fonts/Raleway-Regular.ttf"),
+    Raleway: require("@/assets/fonts/Raleway-Regular.ttf"),
   });
 
   const [showIntro, setShowIntro] = useState(true);
@@ -31,20 +33,24 @@ export default function RootLayout() {
   }
 
   return (
-    <TamaguiProvider config={tamaguiConfig}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="+not-found" />
-        <Stack.Screen name="camera" />
-      </Stack>
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <TamaguiProvider config={tamaguiConfig}>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="+not-found" />
+            <Stack.Screen name="camera" />
+          </Stack>
 
-      {!hideNavbar && <Navbar />}
+          {!hideNavbar && <Navbar />}
 
-      {showIntro && <Intro onAnimationComplete={handleIntroComplete} />}
-    </TamaguiProvider>
+          {showIntro && <Intro onAnimationComplete={handleIntroComplete} />}
+        </TamaguiProvider>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }

@@ -1,21 +1,11 @@
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  TextInput,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
 
 // Contraints
 import events from "@/constants/events";
-
-// Component
-import BackBtn from "../components/BackBtn";
-import CommentsCarousel from "@/components/CommentsCarousel";
 
 // Icons
 import ArrowReply from "@/assets/icons/ArrowReply";
@@ -23,24 +13,23 @@ import Ticket from "@/assets/icons/Ticket";
 import Wifi from "@/assets/icons/Wifi";
 import Pet from "@/assets/icons/Pet";
 import Camera from "@/assets/icons/Camera";
-import SearchIcon from "@/assets/icons/Search";
-import PhoneIcon from "@/assets/icons/Phone";
-import AddressIcon from "@/assets/icons/Address";
-import TimeIcon from "@/assets/icons/Time";
 import HeartSolidIcon from "@/assets/icons/HeartSolid";
 import HeartIcon from "@/assets/icons/HeartOutline";
 
 // Util
-import { sendToMaps } from "../utils/GoogleMaps";
+import { sendToMaps, searchPlace } from "../utils/GoogleMaps";
 
 // Components
 import { Accordion } from "tamagui";
+import BackBtn from "../components/BackBtn";
 import AccordionItem from "../components/AccordionItem";
 import Divisor from "../components/Divisor";
 import Carousel from "../components/EventCarousel";
-import { useState } from "react";
+import CardSearch from "../components/CardSearch";
+import Information from "../layout/Information";
 
 const EventCardInfo = ({ free = false }) => {
+  const [searchText, setSearchText] = useState("");
   const [recommended, setRecommended] = useState(false);
 
   const { item } = useLocalSearchParams();
@@ -60,6 +49,13 @@ const EventCardInfo = ({ free = false }) => {
         params: { item: JSON.stringify(item) },
       }),
   }));
+
+  const handleSearch = () => {
+    if (searchText.trim()) {
+      searchPlace(itemData.address, searchText.trim());
+      setSearchText("");
+    }
+  };
 
   return (
     <SafeAreaProvider>
@@ -113,7 +109,7 @@ const EventCardInfo = ({ free = false }) => {
             </TouchableOpacity>
           </View>
 
-          <SafeAreaView className="pb-[74px]">
+          <SafeAreaView className="pb-[40px]">
             {/* Characteristices */}
             <View className="flex-row gap-5 mx-3 mb-6">
               {itemData.characteristices.map((characteristic, i) => {
@@ -129,16 +125,11 @@ const EventCardInfo = ({ free = false }) => {
             </View>
 
             {/* Search */}
-            <View className="relative justify-center mx-3 mb-7">
-              <View className="absolute left-2">
-                <SearchIcon size={20} color="#3f3f46" />
-              </View>
-
-              <TextInput
-                className="border-b border-zinc-700 ps-9"
-                placeholder="Buscando algo perto? (Restaurante, hotel, etc)"
-              />
-            </View>
+            <CardSearch
+              handleSearch={handleSearch}
+              searchText={searchText}
+              setSearchText={setSearchText}
+            />
 
             {/* FastPass */}
             {!free && itemData.price && (
@@ -191,6 +182,9 @@ const EventCardInfo = ({ free = false }) => {
             </Accordion>
 
             <Divisor />
+
+            {/* Information */}
+            <Information item={itemData} />
 
             {/* <CommentsCarousel comments={itemData.comments} /> */}
 
@@ -246,7 +240,7 @@ const EventCardInfo = ({ free = false }) => {
               pathname: "/camera",
             })
           }
-          className="absolute flex justify-center items-center bg-brown rounded-full bottom-36 right-3 z-[1] p-2 shadow"
+          className="absolute flex justify-center items-center bg-brown rounded-full bottom-8 right-3 z-[1] p-2 shadow"
         >
           <Camera size={32} color="#FFFFFF" />
         </TouchableOpacity>

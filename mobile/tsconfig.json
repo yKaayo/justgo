@@ -17,5 +17,5 @@
     "app/(tabs)/index.tsx",
     "assets/icons/LoopIcon.js",
     ".expo/types/**/*.ts"
-, "constants/architectures.js"  ]
+, "constants/architectures.js", "components/Navbar.jsx"  ]
 }

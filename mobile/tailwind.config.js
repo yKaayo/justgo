@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Raleway", "System"],
+        sans: ["Raleway"],
       },
       colors: {
         brown: "#E17A65",
