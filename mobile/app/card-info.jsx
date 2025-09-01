@@ -15,6 +15,7 @@ import Pet from "@/assets/icons/Pet";
 import Camera from "@/assets/icons/Camera";
 import HeartSolidIcon from "@/assets/icons/HeartSolid";
 import HeartIcon from "@/assets/icons/HeartOutline";
+import BookIcon from "@/assets/icons/Book";
 
 // Util
 import { searchPlace, sendToMaps } from "../utils/GoogleMaps";
@@ -30,7 +31,7 @@ import BackBtn from "../components/BackBtn";
 import CommentsCarousel from "@/components/CommentsCarousel";
 
 // Images
-import womanTransparentImg from "@/assets/images/transparent.png";
+import womanTransparentImg from "@/assets/images/womanTransparent.jpg";
 import womanImg from "@/assets/images/woman.jpg";
 
 // Layout
@@ -208,7 +209,14 @@ const CardInfo = ({ free = false }) => {
                   <AccordionItem
                     title="DESCRIÇÃO"
                     content={
-                      <Text className="mb-7">{itemData.description}</Text>
+                      <>
+                        <Text className="mb-7">{itemData.description}</Text>
+
+                        <TouchableOpacity className="flex-row items-center gap-2 mx-auto bg-brown py-1 px-5 rounded-full">
+                          <BookIcon color="#fff" size={20} />
+                          <Text className="text-white text-lg">História</Text>
+                        </TouchableOpacity>
+                      </>
                     }
                   />
                 )}
