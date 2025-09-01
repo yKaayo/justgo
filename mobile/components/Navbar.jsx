@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import HomeIcon from "@/assets/icons/Home";
 import HeartIcon from "@/assets/icons/HeartOutline";
 import EventIcon from "@/assets/icons/Event";
+import ProfileIcon from "@/assets/icons/Profile";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -50,6 +51,18 @@ const Navbar = () => {
                 style={{ color: getColor("/events") }}
               >
                 Rotas
+              </Text>
+            </Pressable>
+          </Link>
+          
+          <Link href="/profile" asChild>
+            <Pressable className="items-center gap-1">
+              <ProfileIcon strokeWidth={1.35} color={getColor("/profile")} />
+              <Text
+                className="text-sm font-bold"
+                style={{ color: getColor("/profile") }}
+              >
+                Perfil
               </Text>
             </Pressable>
           </Link>
